@@ -1,0 +1,44 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  azureSubscription: 'SrikanthNamoju'
+  resourceGroupName: 'CG-rg'
+  location: 'westus'
+
+steps:
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: '$(azureSubscription)'
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      az group create --name $(resourceGroupName) --location $(location)
+  displayName: 'Create Resource Group'
+
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: '$(azureSubscription)'
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      az deployment group validate --resource-group $(resourceGroupName) --template-file infrastructure/main-template.json --parameters @infrastructure/params.json
+  displayName: 'Validate ARM Template'
+
+
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'SrikanthNamoju'
+    subscriptionId: 'xxxxxxxxxxxxxx'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: '$(resourceGroupName)'
+    location: '$(location)'
+    templateLocation: 'Linked artifact'
+    csmFile: 'infrastructure/main-template.json'
+    csmParametersFile: 'infrastructure/params.json'
+    deploymentMode: 'Incremental'
+  displayName: 'Deploy Infrastructure with ARM Template'

@@ -1,0 +1,19 @@
+# Use the official maven/Java image to create a build artifact.
+# This will build a JAR file
+FROM maven:3.6.3-jdk-8 AS build
+WORKDIR /app
+COPY react-and-spring-data-rest ./
+COPY react-and-spring-data-rest/src ./src
+
+# Run Maven build, log output to file for later inspection
+RUN mvn clean package -DskipTests -X | tee mvn_build.log
+
+# Check if the build produced the JAR file
+RUN if [ ! -f target/*.jar ]; then echo "Build failed: JAR file not found."; exit 1; fi
+
+# Use a minimal Java runtime image to run the application
+FROM openjdk:8-jdk-alpine
+WORKDIR /app
+COPY --from=build react-and-spring-data-rest/target/react*.jar react*.jar
+EXPOSE 8080
+CMD ["java", "-jar", "react*.jar"]

@@ -1,0 +1,46 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  imageName: 'spring-backend'
+  acrName: 'CG5677acr'
+
+steps:
+- task: Maven@3
+  inputs:
+    mavenPomFile: 'react-and-spring-data-rest/pom.xml'
+    goals: 'clean package -DskipTests'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.11'
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: false
+
+- task: Docker@2
+  displayName: 'Build and Push Docker Image'
+  inputs:
+    containerRegistry: 'acr-sc'
+    repository: '$(acrName)/$(imageName)'
+    command: 'buildAndPush'
+    Dockerfile: '$(System.DefaultWorkingDirectory)/react-and-spring-data-rest/Dockerfile.spring'
+    tags: 'latest'
+
+- task: Kubernetes@1
+  displayName: 'Deploy to AKS'
+  inputs:
+    connectionType: 'Azure Resource Manager'
+    azureSubscriptionEndpoint: 'SrikanthNamoju'
+    azureResourceGroup: 'CG-rg'
+    kubernetesCluster: 'CG5677akscluster'
+    namespace: 'default'
+    command: 'apply'
+    useConfigurationFile: true
+    configuration: 'k8s/backend-spring-deployment.yaml'
+    secretType: 'dockerRegistry'
+    containerRegistryType: 'Azure Container Registry'
