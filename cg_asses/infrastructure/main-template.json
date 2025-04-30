@@ -1,0 +1,100 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "resources": [
+    {
+      "type": "Microsoft.ContainerRegistry/registries",
+      "apiVersion": "2021-09-01",
+      "name": "[parameters('acrName')]",
+      "location": "[parameters('location')]",
+      "sku": {
+        "name": "Basic"
+      },
+      "properties": {
+        "adminUserEnabled": true
+      }
+    },
+    {
+      "type": "Microsoft.ContainerService/managedClusters",
+      "apiVersion": "2021-03-01",
+      "name": "[parameters('aksName')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.ContainerRegistry/registries', parameters('acrName'))]"
+      ],
+      "properties": {
+        "kubernetesVersion": "1.29.4",
+        "dnsPrefix": "[parameters('dnsPrefix')]",
+        "agentPoolProfiles": [
+          {
+            "name": "agentpool",
+            "count": 2,
+            "vmSize": "Standard_DS2_v2",
+            "maxPods": 110,
+            "osType": "Linux",
+            "type": "VirtualMachineScaleSets",
+            "mode": "System"
+          }
+        ],
+        "servicePrincipalProfile": {
+          "clientId": "[parameters('clientId')]",
+          "secret": "[parameters('clientSecret')]"
+        },
+        "addonProfiles": {
+          "httpApplicationRouting": {
+            "enabled": true
+          },
+          "azurePolicy": {
+            "enabled": true
+          }
+        },
+        "enableRBAC": true,
+        "networkProfile": {
+          "networkPlugin": "azure",
+          "networkPolicy": "azure",
+          "serviceCidr": "10.0.0.0/16",
+          "dnsServiceIP": "10.0.0.10",
+          "dockerBridgeCidr": "172.17.0.1/16"
+        }
+      }
+    }
+  ],
+  "parameters": {
+    "acrName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the Azure Container Registry."
+      }
+    },
+    "aksName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the AKS cluster."
+      }
+    },
+    "dnsPrefix": {
+      "type": "string",
+      "metadata": {
+        "description": "DNS prefix for the AKS cluster."
+      }
+    },
+    "location": {
+      "type": "string",
+      "metadata": {
+        "description": "Location for all resources."
+      }
+    },
+    "clientId": {
+      "type": "string",
+      "metadata": {
+        "description": "Service principal client ID."
+      }
+    },
+    "clientSecret": {
+      "type": "securestring",
+      "metadata": {
+        "description": "Service principal client secret."
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5mj1vehs4lo6"]
+
+[ext_resource type="Texture2D" uid="uid://ddlj4xacluntb" path="res://assets/overlays/weapon_codeblock_blue.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://d21gqi1jxyyen" path="res://assets/overlays/weapon_code_white.png" id="2"]
+[ext_resource type="Script" path="res://src/overlays/WeaponOverlay.cs" id="4"]
+
+[node name="WeaponOverlay" type="CanvasLayer"]
+script = ExtResource("4")
+
+[node name="HeatingBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(200, 0)
+offset_left = 1650.0
+offset_top = 39.0
+offset_right = 1843.0
+offset_bottom = 59.0
+max_value = 500.0
+rounded = true
+
+[node name="Sprite2D" type="Sprite2D" parent="HeatingBar"]
+position = Vector2(-30, 0)
+texture = ExtResource("2")
+
+[node name="Label2" type="Label" parent="HeatingBar"]
+layout_mode = 0
+offset_top = -23.0
+offset_right = 192.0
+offset_bottom = 3.0
+text = "Weapon heat signature"
+
+[node name="PrimaryBulletSprite" type="Sprite2D" parent="."]
+position = Vector2(1620, 39)
+texture = ExtResource("1")

@@ -1,0 +1,24 @@
+# Godot-specific ignores
+.import/
+*.import
+
+# Mono-specific ignores
+.mono/
+data_*/
+mono_crash.*.json
+mono_crash.*
+
+# Visual Studio ignores
+.vs
+.vscode
+x64/
+x86/
+*.exp
+*.lib
+*.pdb
+*.user
+
+# Space invaders ignores
+Leaderboard.txt
+.Godot/
+Credentials.csv

@@ -1,0 +1,79 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfgb6eau4ucnh"]
+
+[ext_resource type="Script" path="res://src/screens/home/LeaderBoardMenu.cs" id="1_3u72q"]
+[ext_resource type="Theme" uid="uid://b6eoudtut6184" path="res://assets/FontTheme.tres" id="2_wxwnb"]
+
+[node name="LeaderBoardMenu" type="CanvasLayer"]
+script = ExtResource("1_3u72q")
+
+[node name="GameName" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -486.5
+offset_top = 106.0
+offset_right = 486.5
+offset_bottom = 254.0
+grow_horizontal = 2
+theme = ExtResource("2_wxwnb")
+theme_override_colors/font_color = Color(0.515625, 0.453125, 0.914063, 1)
+theme_override_font_sizes/font_size = 120
+text = "Space Invaders"
+horizontal_alignment = 1
+
+[node name="SinglePlayerLeaderBoard" type="Button" parent="."]
+offset_left = 664.0
+offset_top = 367.0
+offset_right = 1264.0
+offset_bottom = 447.0
+focus_neighbor_bottom = NodePath("../MultiplayerLeaderBoard")
+theme = ExtResource("2_wxwnb")
+theme_override_font_sizes/font_size = 40
+text = "Single player leader board"
+
+[node name="MultiplayerLeaderBoard" type="Button" parent="."]
+offset_left = 664.0
+offset_top = 492.0
+offset_right = 1264.0
+offset_bottom = 572.0
+pivot_offset = Vector2(548, 72)
+focus_neighbor_top = NodePath("../SinglePlayerLeaderBoard")
+focus_neighbor_bottom = NodePath("../CooperativeAILeaderBoard")
+theme = ExtResource("2_wxwnb")
+theme_override_font_sizes/font_size = 40
+text = "Multiplayer leader board"
+
+[node name="CooperativeAILeaderBoard" type="Button" parent="."]
+offset_left = 664.0
+offset_top = 612.0
+offset_right = 1264.0
+offset_bottom = 692.0
+pivot_offset = Vector2(548, 72)
+focus_neighbor_top = NodePath("../MultiplayerLeaderBoard")
+focus_neighbor_bottom = NodePath("../BackLB")
+theme = ExtResource("2_wxwnb")
+theme_override_font_sizes/font_size = 40
+text = "Co Op with AI leader board"
+
+[node name="SurvivalModeLeaderBoard" type="Button" parent="."]
+offset_left = 662.0
+offset_top = 726.0
+offset_right = 1262.0
+offset_bottom = 806.0
+pivot_offset = Vector2(548, 72)
+focus_neighbor_top = NodePath("../MultiplayerLeaderBoard")
+focus_neighbor_bottom = NodePath("../BackLB")
+theme = ExtResource("2_wxwnb")
+theme_override_font_sizes/font_size = 40
+text = "Survival Mode leader board"
+
+[node name="BackLB" type="Button" parent="."]
+offset_left = 664.0
+offset_top = 914.0
+offset_right = 1264.0
+offset_bottom = 994.0
+pivot_offset = Vector2(548, 72)
+focus_neighbor_top = NodePath("../CooperativeAILeaderBoard")
+theme = ExtResource("2_wxwnb")
+theme_override_font_sizes/font_size = 40
+text = "Home"

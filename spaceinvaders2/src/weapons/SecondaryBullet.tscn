@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bn3tt5s11ylit"]
+
+[ext_resource type="Texture2D" uid="uid://wywmtb05rl63" path="res://Laser Sprites/02.png" id="1"]
+[ext_resource type="Script" path="res://src/weapons/SecondaryBullet.cs" id="2"]
+[ext_resource type="AudioStream" uid="uid://ct2xs8qpnmep7" path="res://src/sounds/secondary_weapon.wav" id="3_jfwca"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kbx80"]
+size = Vector2(78.3981, 32.9705)
+
+[node name="Laser" type="Sprite2D"]
+z_index = 1
+rotation = -1.5708
+scale = Vector2(0.108995, 0.125131)
+texture = ExtResource("1")
+script = ExtResource("2")
+
+[node name="LaserArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LaserArea"]
+position = Vector2(-25.0242, -0.502183)
+scale = Vector2(0.999999, 1)
+shape = SubResource("RectangleShape2D_kbx80")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_jfwca")

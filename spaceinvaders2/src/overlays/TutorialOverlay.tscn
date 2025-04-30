@@ -1,0 +1,227 @@
+[gd_scene load_steps=16 format=3 uid="uid://j3i288pm2gi7"]
+
+[ext_resource type="Script" path="res://addons/controller_icons/objects/TextureRect.gd" id="3"]
+[ext_resource type="FontFile" uid="uid://dwbt0dbrdt8nv" path="res://Xolonium-Regular.ttf" id="3_i6f5b"]
+[ext_resource type="Texture2D" uid="uid://cercrrfimummq" path="res://addons/controller_icons/assets/key/space.png" id="3_qj1ey"]
+[ext_resource type="Texture2D" uid="uid://bqxt5h2m1d000" path="res://addons/controller_icons/assets/key/a.png" id="5_nqoy7"]
+[ext_resource type="Texture2D" uid="uid://bmdy7dn2sin1r" path="res://addons/controller_icons/assets/key/d.png" id="6_ybk1u"]
+[ext_resource type="Texture2D" uid="uid://c2j8hpxju4iql" path="res://addons/controller_icons/assets/key/w.png" id="7_junui"]
+[ext_resource type="Script" path="res://src/overlays/TutorialOverlay.cs" id="8"]
+[ext_resource type="Texture2D" uid="uid://dgr3hcxnay2fi" path="res://addons/controller_icons/assets/key/s.png" id="8_ornxc"]
+[ext_resource type="Texture2D" uid="uid://b6r0hs1nx5y28" path="res://addons/controller_icons/assets/key/0.png" id="9_ap80o"]
+[ext_resource type="Texture2D" uid="uid://diopm88tirs8i" path="res://addons/controller_icons/assets/key/arrow_left.png" id="10_wk7ec"]
+[ext_resource type="Texture2D" uid="uid://dj1w0fawrqqkw" path="res://addons/controller_icons/assets/key/arrow_right.png" id="11_ciwlb"]
+[ext_resource type="Texture2D" uid="uid://dms7v5nlqvfcy" path="res://addons/controller_icons/assets/key/arrow_up.png" id="12_bbscl"]
+[ext_resource type="Texture2D" uid="uid://c338lmyl5g43l" path="res://addons/controller_icons/assets/key/arrow_down.png" id="13_g726e"]
+[ext_resource type="Texture2D" uid="uid://bp0e4falvtavx" path="res://addons/controller_icons/assets/key/esc.png" id="14_815ny"]
+[ext_resource type="Texture2D" uid="uid://clp1f2b146vce" path="res://addons/controller_icons/assets/key/enter_alt.png" id="15_fn15i"]
+
+[node name="TutorialOverlay" type="CanvasLayer"]
+script = ExtResource("8")
+
+[node name="FirstPlayerControls" type="Node2D" parent="."]
+position = Vector2(1125, 0)
+
+[node name="Shoot" type="Label" parent="FirstPlayerControls"]
+offset_left = -146.5
+offset_top = 400.0
+offset_right = 190.5
+offset_bottom = 452.0
+theme_override_fonts/font = ExtResource("3_i6f5b")
+theme_override_font_sizes/font_size = 40
+text = "Shoot"
+
+[node name="Move" type="Label" parent="FirstPlayerControls"]
+offset_left = -146.5
+offset_top = 500.0
+offset_right = 190.5
+offset_bottom = 552.0
+theme_override_fonts/font = ExtResource("3_i6f5b")
+theme_override_font_sizes/font_size = 40
+text = "Move"
+
+[node name="Weapon" type="Label" parent="FirstPlayerControls"]
+offset_left = -146.5
+offset_top = 600.0
+offset_right = 190.5
+offset_bottom = 652.0
+theme_override_fonts/font = ExtResource("3_i6f5b")
+theme_override_font_sizes/font_size = 40
+text = "Change weapon"
+
+[node name="ShootIcon" type="TextureRect" parent="FirstPlayerControls"]
+custom_minimum_size = Vector2(40, 40)
+offset_left = -328.0
+offset_top = 375.0
+offset_right = -228.0
+offset_bottom = 475.0
+texture = ExtResource("3_qj1ey")
+expand_mode = 1
+script = ExtResource("3")
+path = "fire_1"
+
+[node name="MoveLeftIcon" type="TextureRect" parent="FirstPlayerControls"]
+custom_minimum_size = Vector2(40, 40)
+offset_left = -378.0
+offset_top = 475.0
+offset_right = -278.0
+offset_bottom = 575.0
+texture = ExtResource("5_nqoy7")
+expand_mode = 1
+script = ExtResource("3")
+path = "move_left_1"
+
+[node name="MoveRightIcon" type="TextureRect" parent="FirstPlayerControls"]
+custom_minimum_size = Vector2(40, 40)
+offset_left = -278.0
+offset_top = 475.0
+offset_right = -178.0
+offset_bottom = 575.0
+texture = ExtResource("6_ybk1u")
+expand_mode = 1
+script = ExtResource("3")
+path = "move_right_1"
+
+[node name="CycleWeaponUpIcon" type="TextureRect" parent="FirstPlayerControls"]
+custom_minimum_size = Vector2(40, 40)
+offset_left = -278.0
+offset_top = 575.0
+offset_right = -178.0
+offset_bottom = 675.0
+texture = ExtResource("7_junui")
+expand_mode = 1
+script = ExtResource("3")
+path = "SwitchMainWeapon_1"
+
+[node name="CycleWeaponDownIcon" type="TextureRect" parent="FirstPlayerControls"]
+custom_minimum_size = Vector2(40, 40)
+offset_left = -378.0
+offset_top = 575.0
+offset_right = -278.0
+offset_bottom = 675.0
+texture = ExtResource("8_ornxc")
+expand_mode = 1
+script = ExtResource("3")
+path = "SwitchSprayWeapon_1"
+
+[node name="SecondPlayerControls" type="Node2D" parent="."]
+visible = false
+position = Vector2(960, 0)
+
+[node name="ShootIcon" type="TextureRect" parent="SecondPlayerControls"]
+custom_minimum_size = Vector2(40, 40)
+offset_left = 250.0
+offset_top = 375.0
+offset_right = 350.0
+offset_bottom = 475.0
+texture = ExtResource("9_ap80o")
+expand_mode = 1
+script = ExtResource("3")
+path = "fire_2"
+
+[node name="MoveLeftIcon" type="TextureRect" parent="SecondPlayerControls"]
+custom_minimum_size = Vector2(40, 40)
+offset_left = 200.0
+offset_top = 475.0
+offset_right = 300.0
+offset_bottom = 575.0
+texture = ExtResource("10_wk7ec")
+expand_mode = 1
+script = ExtResource("3")
+path = "move_left_2"
+
+[node name="MoveRightIcon" type="TextureRect" parent="SecondPlayerControls"]
+custom_minimum_size = Vector2(40, 40)
+offset_left = 300.0
+offset_top = 475.0
+offset_right = 400.0
+offset_bottom = 575.0
+texture = ExtResource("11_ciwlb")
+expand_mode = 1
+script = ExtResource("3")
+path = "move_right_2"
+
+[node name="CycleWeaponUpIcon" type="TextureRect" parent="SecondPlayerControls"]
+custom_minimum_size = Vector2(40, 40)
+offset_left = 300.0
+offset_top = 575.0
+offset_right = 400.0
+offset_bottom = 675.0
+texture = ExtResource("12_bbscl")
+expand_mode = 1
+script = ExtResource("3")
+path = "SwitchMainWeapon_2"
+
+[node name="CycleWeaponDownIcon" type="TextureRect" parent="SecondPlayerControls"]
+custom_minimum_size = Vector2(40, 40)
+offset_left = 200.0
+offset_top = 575.0
+offset_right = 300.0
+offset_bottom = 675.0
+texture = ExtResource("13_g726e")
+expand_mode = 1
+script = ExtResource("3")
+path = "SwitchSprayWeapon_2"
+
+[node name="JoystickIcon" type="TextureRect" parent="SecondPlayerControls"]
+custom_minimum_size = Vector2(40, 40)
+offset_left = 500.0
+offset_top = 326.0
+offset_right = 540.0
+offset_bottom = 366.0
+expand_mode = 1
+script = ExtResource("3")
+path = "move_left"
+
+[node name="Pause" type="Node" parent="."]
+
+[node name="PauseLabel" type="Label" parent="Pause"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -78.5
+offset_top = 162.0
+offset_right = 78.5
+offset_bottom = 223.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_i6f5b")
+theme_override_font_sizes/font_size = 48
+text = "Pause"
+
+[node name="pauseIcon" type="TextureRect" parent="Pause"]
+custom_minimum_size = Vector2(40, 40)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 93.0
+offset_top = 140.0
+offset_right = 193.0
+offset_bottom = 240.0
+grow_horizontal = 2
+texture = ExtResource("14_815ny")
+expand_mode = 1
+script = ExtResource("3")
+path = "Pause"
+
+[node name="StartNode" type="Node2D" parent="."]
+position = Vector2(960, 950)
+
+[node name="StartLabel" type="Label" parent="StartNode"]
+offset_left = -76.5
+offset_top = 6.0
+offset_right = 76.5
+offset_bottom = 79.0
+theme_override_fonts/font = ExtResource("3_i6f5b")
+theme_override_font_sizes/font_size = 58
+text = "Start"
+
+[node name="StartIcon" type="TextureRect" parent="StartNode"]
+custom_minimum_size = Vector2(40, 40)
+offset_left = 94.0
+offset_top = -18.0
+offset_right = 194.0
+offset_bottom = 82.0
+texture = ExtResource("15_fn15i")
+expand_mode = 1
+script = ExtResource("3")
+path = "ui_skip"

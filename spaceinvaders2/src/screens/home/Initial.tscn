@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgpqximyuond3"]
+
+[ext_resource type="Texture2D" uid="uid://cyfiiw84tsj7r" path="res://assets/Starfields/background_1920.png" id="2"]
+[ext_resource type="Script" path="res://src/screens/home/Initial.cs" id="3"]
+[ext_resource type="Script" path="res://src/background/ParallaxBackground.cs" id="4_uvk8i"]
+
+[node name="Main" type="Node2D"]
+scale = Vector2(0.995769, 1)
+script = ExtResource("3")
+metadata/_edit_horizontal_guides_ = []
+
+[node name="StarsBackground" type="ParallaxBackground" parent="."]
+scroll_ignore_camera_zoom = true
+script = ExtResource("4_uvk8i")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="StarsBackground"]
+motion_scale = Vector2(0, 0.5)
+motion_mirroring = Vector2(0, 512)
+
+[node name="Sprite2D" type="Sprite2D" parent="StarsBackground/ParallaxLayer"]
+position = Vector2(956.45, 541.5)
+texture = ExtResource("2")
+region_rect = Rect2(4.24084, 139.856, 826.759, 556.644)
+
+[node name="TriggerScreensaver" type="Timer" parent="."]
+wait_time = 30.0
+autostart = true
+
+[connection signal="timeout" from="TriggerScreensaver" to="." method="OnTriggerScreensaverTimeout"]

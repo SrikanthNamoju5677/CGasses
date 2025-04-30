@@ -1,0 +1,11 @@
+<Project Sdk="Godot.NET.Sdk/4.1.0">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <RootNamespace>PrototypeSpaceInvadersC</RootNamespace>
+    <LangVersion>9.0</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="IKVM" Version="8.2.1" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+  </ItemGroup>
+</Project>

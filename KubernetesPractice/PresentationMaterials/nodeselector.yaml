@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: affinity
+spec:
+  #nodeName: foo-node # schedule pod to specific node
+  containers:
+  - name: mypod
+    image: ubuntu:20.04
+    command: ["/bin/bash"]
+    args: ["-c","echo hi;sleep 6000;echo bye!"]
+  nodeSelector:  # all of the below must be true
+    kubernetes.io/hostname: minikube

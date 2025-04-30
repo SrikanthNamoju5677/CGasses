@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://c3fngl0bmbunn"]
+
+[ext_resource type="Texture2D" uid="uid://q5ipp4t8vb3j" path="res://assets/PNG/invader_yellow.png" id="1"]
+[ext_resource type="Script" path="res://src/invader/Invader.cs" id="2"]
+[ext_resource type="AudioStream" uid="uid://semdumtc5f77" path="res://src/sounds/hitsound.mp3" id="3_njcrt"]
+
+[sub_resource type="CapsuleShape2D" id="1"]
+radius = 34.7688
+height = 69.5377
+
+[node name="Invader" type="Sprite2D" groups=["Invaders"]]
+self_modulate = Color(1.16, 1, 1, 1)
+show_behind_parent = true
+position = Vector2(302.385, 377.438)
+rotation = 3.14159
+texture = ExtResource("1")
+script = ExtResource("2")
+
+[node name="InvaderArea" type="Area2D" parent="."]
+scale = Vector2(2, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InvaderArea"]
+position = Vector2(-0.608459, 0.864014)
+scale = Vector2(1, -0.993)
+shape = SubResource("1")
+
+[node name="onHit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_njcrt")
+
+[node name="InvaderInScreenNotifier" type="VisibleOnScreenNotifier2D" parent="."]

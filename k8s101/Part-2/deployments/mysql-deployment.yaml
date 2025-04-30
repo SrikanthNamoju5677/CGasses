@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: mysql
+  name: mysql
+  namespace: apps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        io.kompose.network/grid-default: "true"
+        app: mysql
+    spec:
+      containers:
+        - env:
+            - name: MYSQL_DATABASE
+              value: todos
+            - name: MYSQL_ROOT_PASSWORD
+              value: secret
+          image: k8s101.azurecr.io/grid_mysql_demo:v1
+          name: mysql
+          ports:
+            - containerPort: 3306
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "1024Mi"
+              cpu: "500m"
+      restartPolicy: Always

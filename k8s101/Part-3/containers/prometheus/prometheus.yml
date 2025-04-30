@@ -1,0 +1,39 @@
+global:
+  scrape_interval:     15s
+  evaluation_interval: 15s
+
+rule_files:
+  - 'alert.rules'
+
+scrape_configs:
+  - job_name: prometheus
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['localhost:9090']
+        labels:
+          group: 'self'
+  - job_name: app
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['grid-default:8080']
+        labels:
+          group: 'testapps'
+  - job_name: localapp
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['host.docker.internal:8080']
+        labels:
+          group: 'testapps'
+  - job_name: k8sapp
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['20.23.22.45:8080']
+        labels:
+          group: 'k8sapps'
+  - job_name: k8sapp-self
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['grid-default:8080']
+        labels:
+          group: 'k8sapps'
+    

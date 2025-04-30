@@ -1,0 +1,18 @@
+# Tasks:
+# 1. Deploy yaml
+# 2. Try to kill a pod and see what happens
+# 3. redeploy pod
+# 4. Try to update the pod, e.g. with a different arg
+# 5. Delete the pod (without using "kubectl delete -f <yaml>"), wait until it is removed
+# 6. Try deleting with the "kubectl delete -f <yaml>"
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  containers:
+  - name: my-container
+    image: ubuntu:20.04
+    command: ["/bin/bash"]
+    args: ["-c","echo hi;sleep 6000;echo bye!"]

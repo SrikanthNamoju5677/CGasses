@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: example-job
+spec:
+  completions: 3
+  parallelism: 2
+  # completionMode can be used to require all parallel jobs to succeed once
+  backoffLimit : 6  # max failures, default=6
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: example-workload
+        image: ubuntu:20.04
+        command: ["/bin/bash"]
+        args: ["-c","echo hi;sleep 6000;echo bye!"]

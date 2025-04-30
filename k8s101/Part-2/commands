@@ -1,0 +1,45 @@
+# CHEATSHEET
+
+# check if kubectl is installed:
+kubectl version
+
+# deploy app from yaml
+kubectl apply -f {{path/to/yaml}}
+
+# create direct deployment from image:
+kubectl create deployment {{name}} --image={{imagename}}
+
+# get/explain pods (handy for debug/overview)
+#view all pods in namespace
+kubectl get pods
+# view deployment
+kubectl get deployment {{deployment_name}}
+# view pods' yaml
+kubectl get pod {{podname}} -o yaml
+
+kubectl explain pods
+kubectl describe nodes {{nodename}}
+kubectl describe pods {{podname}}
+
+# view logentry pods
+kubectl logs {{pod}}
+
+# view logs deployment
+kubectl logs deploy/my-deployment -c {{containername}}
+
+
+# scale pods
+# if default is given
+kubectl scale --replicas={{number_of_replicas}} 
+# override yaml settings
+kubectl scale --replicas={{number_of_replicas}} -f {{path/to/yaml}}
+# autoscale deployment
+kubectl autoscale deployment {{deployment name}} --min={{min_number}}--max={{max_number}}
+
+# delete pods
+# gracefully service specified in json:
+kubectl delete -f ./pod.json  
+# not so gracefully...
+kubectl delete pod {{name_pod}} --now 
+# all pods in namespace
+kubectl -n my-ns delete pod,svc --all

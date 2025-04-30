@@ -1,0 +1,79 @@
+[gd_scene load_steps=5 format=3 uid="uid://cvte0cvd6trrs"]
+
+[ext_resource type="Script" path="res://src/screens/home/GameModeMenu.cs" id="1_cftke"]
+[ext_resource type="Theme" uid="uid://b6eoudtut6184" path="res://assets/FontTheme.tres" id="2_8xm3y"]
+[ext_resource type="Texture2D" uid="uid://dgtprxivqljon" path="res://assets/Starfields/Code Invaders logo_withoutbg.png" id="2_rxaw8"]
+[ext_resource type="AudioStream" uid="uid://5g42w1esb54b" path="res://src/sounds/confirm.wav" id="3_3ovou"]
+
+[node name="GameModeMenu" type="CanvasLayer"]
+script = ExtResource("1_cftke")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 389.0
+offset_top = -36.0
+offset_right = 1512.0
+offset_bottom = 1030.0
+texture = ExtResource("2_rxaw8")
+
+[node name="SinglePlayerGame" type="Button" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -296.0
+offset_top = 488.0
+offset_right = 304.0
+offset_bottom = 568.0
+grow_horizontal = 2
+focus_neighbor_bottom = NodePath("../MultiPlayerGame")
+theme = ExtResource("2_8xm3y")
+theme_override_font_sizes/font_size = 40
+text = "Single player game"
+
+[node name="MultiPlayerGame" type="Button" parent="."]
+offset_left = 664.0
+offset_top = 591.0
+offset_right = 1264.0
+offset_bottom = 671.0
+focus_neighbor_top = NodePath("../SinglePlayerGame")
+focus_neighbor_bottom = NodePath("../CooperativeAIGame")
+theme = ExtResource("2_8xm3y")
+theme_override_font_sizes/font_size = 40
+text = "Multiplayer game"
+
+[node name="CooperativeAIGame" type="Button" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -296.0
+offset_top = 698.0
+offset_right = 304.0
+offset_bottom = 778.0
+grow_horizontal = 2
+focus_neighbor_top = NodePath("../MultiPlayerGame")
+theme = ExtResource("2_8xm3y")
+theme_override_font_sizes/font_size = 40
+text = "Co Op with AI game"
+
+[node name="SurvivalModeGame" type="Button" parent="."]
+offset_left = 664.0
+offset_top = 804.0
+offset_right = 1264.0
+offset_bottom = 884.0
+focus_neighbor_top = NodePath("../MultiPlayerGame")
+theme = ExtResource("2_8xm3y")
+theme_override_font_sizes/font_size = 40
+text = "Survival Mode"
+
+[node name="BackGM" type="Button" parent="."]
+offset_left = 664.0
+offset_top = 914.0
+offset_right = 1264.0
+offset_bottom = 994.0
+pivot_offset = Vector2(548, 72)
+theme = ExtResource("2_8xm3y")
+theme_override_font_sizes/font_size = 40
+text = "Home"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_3ovou")
+volume_db = 9.991

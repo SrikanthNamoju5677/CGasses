@@ -1,0 +1,32 @@
+# Tasks:
+# 1. Deploy yaml
+# 2. Try to kill a pod and see what happens
+# 3. Try to update the replicaset, changing the args of the container / environment keys; Please inspect running containers
+# 4. Try to update the replicaset, changing the metadata of the replicaset; Please inspect running containers
+# 5. Afterwards please delete
+
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: my-replicaset
+  labels:
+    app: my-replicaset
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: my-replicaset
+  template:
+    metadata:
+      labels:
+        app: my-replicaset
+    spec:
+      containers:
+      - name: my-container
+        image: ubuntu:20.04
+        command: ["/bin/bash"]
+        args: ["-c","echo hi;sleep 6000;echo bye!"]
+        env:
+          - name: KEY
+            value: VALUE
+

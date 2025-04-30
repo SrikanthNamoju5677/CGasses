@@ -1,0 +1,27 @@
+[gd_scene load_steps=7 format=3 uid="uid://bbxmo5h5batyl"]
+
+[ext_resource type="Script" path="res://src/sounds/MusicManager.cs" id="1_dg1ja"]
+[ext_resource type="AudioStream" uid="uid://b104acatmf5yg" path="res://src/sounds/long_bgm.mp3" id="2_pv7op"]
+[ext_resource type="AudioStream" uid="uid://dcytqf148fir3" path="res://src/sounds/error.mp3" id="3_7sbh2"]
+[ext_resource type="AudioStream" uid="uid://dtl1cgcpb82og" path="res://src/sounds/levels_bgm.mp3" id="4_32mnj"]
+[ext_resource type="AudioStream" uid="uid://b74odbt3f3g86" path="res://src/sounds/boss_level.mp3" id="5_7x26i"]
+[ext_resource type="AudioStream" uid="uid://mb6mw75al7n1" path="res://src/sounds/you_are_winner.mp3" id="6_xyxhs"]
+
+[node name="musicManager" type="CanvasLayer"]
+script = ExtResource("1_dg1ja")
+
+[node name="home_bgm" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_pv7op")
+autoplay = true
+
+[node name="error" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_7sbh2")
+
+[node name="levels_bgm" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_32mnj")
+
+[node name="boss_level" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_7x26i")
+
+[node name="you_are_winner" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_xyxhs")

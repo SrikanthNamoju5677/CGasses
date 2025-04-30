@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cefaaqkmc5e84"]
+
+[ext_resource type="AudioStream" uid="uid://b4stym3nbvgry" path="res://src/sounds/confirm-38513.mp3" id="1_406lf"]
+
+[node name="click_button" type="Node2D"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_406lf")

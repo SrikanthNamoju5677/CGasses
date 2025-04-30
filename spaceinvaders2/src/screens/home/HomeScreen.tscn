@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://dm0wky63grg51"]
+
+[ext_resource type="Script" path="res://src/screens/home/HomeScreen.cs" id="2"]
+[ext_resource type="Theme" uid="uid://b6eoudtut6184" path="res://assets/FontTheme.tres" id="2_nv0pq"]
+[ext_resource type="AudioStream" uid="uid://5g42w1esb54b" path="res://src/sounds/confirm.wav" id="3_3ovou"]
+[ext_resource type="Texture2D" uid="uid://dgtprxivqljon" path="res://assets/Starfields/Code Invaders logo_withoutbg.png" id="4_8bncp"]
+
+[node name="HomeScreen" type="CanvasLayer"]
+script = ExtResource("2")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 389.0
+offset_top = -36.0
+offset_right = 1512.0
+offset_bottom = 1030.0
+texture = ExtResource("4_8bncp")
+
+[node name="PlayGame" type="Button" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -296.0
+offset_top = 659.0
+offset_right = 304.0
+offset_bottom = 739.0
+grow_horizontal = 2
+focus_neighbor_bottom = NodePath("../LeaderBoard")
+theme = ExtResource("2_nv0pq")
+theme_override_font_sizes/font_size = 40
+text = "Play Game"
+
+[node name="LeaderBoard" type="Button" parent="."]
+offset_left = 664.0
+offset_top = 767.0
+offset_right = 1264.0
+offset_bottom = 847.0
+focus_neighbor_top = NodePath("../PlayGame")
+theme = ExtResource("2_nv0pq")
+theme_override_font_sizes/font_size = 40
+text = "Leader Boards"
+
+[node name="Exit" type="Button" parent="."]
+offset_left = 664.0
+offset_top = 872.0
+offset_right = 1264.0
+offset_bottom = 952.0
+pivot_offset = Vector2(548, 72)
+theme = ExtResource("2_nv0pq")
+theme_override_font_sizes/font_size = 40
+text = "Exit"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_3ovou")
+volume_db = 9.991

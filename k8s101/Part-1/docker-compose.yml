@@ -1,0 +1,64 @@
+version: "3.7"
+
+services:
+  app1:
+    #image: k8s101.azurecr.io/grid_app_demo:v1          # from registry
+    build:                                              # local build
+      context: ./app                                    # local build
+    container_name: app                           
+    hostname: app
+    command: sh -c "yarn install && yarn run dev"
+    ports:
+      - 4000:4000
+      - 8080:8080
+    volumes:
+      - ./app:/app
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: root
+      MYSQL_PASSWORD: secret
+      MYSQL_DB: todos
+
+  mysql1:
+    #image: k8s101.azurecr.io/grid_mysql_demo:v1        # from registry
+    build:                                              # local build
+      context: ./database                               # local build
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: todos
+    ports:
+      - 3306:3306
+
+
+  prometheus1:
+    #image: k8s101.azurecr.io/grid_prometheus_demo:v1   # from registry
+    build:                                              # local build
+      context: ./prometheus                             # local build
+    container_name: prometheus1
+    volumes:
+      - prometheus_data1:/prometheus
+    command: --config.file=/prometheus/config/prometheus.yml --storage.tsdb.path=/prometheus --web.enable-lifecycle
+    ports:
+      - 9090:9090
+    
+  grafana:
+    #image: k8s101.azurecr.io/grid_grafana_demo:v1      # from registry
+    build:                                              # local build
+      context: ./grafana                                # local build
+    container_name: grafana
+    user: '472'
+    restart: always
+    environment:
+      GF_INSTALL_PLUGINS: 'grafana-clock-panel,grafana-simple-json-datasource'
+    env_file:
+      - ./grafana/config.monitoring
+    ports:
+      - 3000:3000
+    depends_on:
+      - prometheus1
+
+volumes:
+  database:
+  app:
+  prometheus_data1:

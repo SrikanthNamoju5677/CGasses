@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/background/Stars.png" type="Texture2D" id=1]
+[ext_resource path="res://src/background/Stars.cs" type="Script" id=2]
+
+[node name="Stars" type="Sprite2D"]
+position = Vector2( 968, 531.5 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 1 )
+script = ExtResource( 2 )

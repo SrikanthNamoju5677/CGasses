@@ -1,0 +1,52 @@
+# CHEATSHEET
+
+# check if docker-compose is installed:
+docker-compose --version
+
+# Build initial app:
+docker-compose build
+
+# Run app
+docker-compose up -d
+
+# Check containers:
+docker ps
+#or:
+docker-compose ps
+
+# check logging container:
+docker log {{container_name}}
+
+# stop all containers:
+docker-compose down
+
+# stop and remove single container:
+docker stop {{container name}}
+docker rm {{container name}}
+
+# check all exitsting images:
+docker images ls
+
+# tag images (target must include remote repository)
+docker tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]
+
+# push tagged images to remote repository
+docker push {{tagged_image_name:version}}
+
+# Pull tagged images from remote repository
+# docker:
+docker pull {{image}}
+
+# docker-compose:
+# change build/context in docker-compose.yml to:
+image:{{tagged_image_name:version}}
+
+# delete all dangling containers and networks (NOT RUNNING):
+docker system prune -a 
+
+# delete all images:
+docker image prune -a   
+
+# convert docker-compose to yaml files for kubectl:
+kompoze convert
+

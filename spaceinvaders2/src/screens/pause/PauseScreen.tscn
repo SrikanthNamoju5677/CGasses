@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://bg5n1aox2vnaa"]
+
+[ext_resource type="Script" path="res://src/screens/pause/PauseScreen.cs" id="2"]
+[ext_resource type="Theme" uid="uid://b6eoudtut6184" path="res://assets/FontTheme.tres" id="2_1d8v7"]
+[ext_resource type="Script" path="res://src/screens/SinglePlayerGame.cs" id="3"]
+
+
+[node name="PauseScreen" type="CanvasLayer"]
+script = ExtResource("2")
+
+[node name="ResumeButton" type="Button" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_top = 350.0
+offset_right = 300.0
+offset_bottom = 430.0
+focus_neighbor_bottom = NodePath("../HomeButton")
+theme = ExtResource("2_1d8v7")
+theme_override_font_sizes/font_size = 40
+text = "Resume"
+script = ExtResource("3")
+
+[node name="HomeButton" type="Button" parent="."]
+offset_left = 660.0
+offset_top = 500.0
+offset_right = 1260.0
+offset_bottom = 580.0
+focus_neighbor_top = NodePath("../ResumeButton")
+theme = ExtResource("2_1d8v7")
+theme_override_font_sizes/font_size = 40
+text = "Home"
+
+[node name="GameName" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -486.5
+offset_top = 106.0
+offset_right = 486.5
+offset_bottom = 251.0
+theme = ExtResource("2_1d8v7")
+theme_override_font_sizes/font_size = 80
+text = "Paused"
+horizontal_alignment = 1
+vertical_alignment = 1

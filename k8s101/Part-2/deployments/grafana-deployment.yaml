@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: grafana
+  name: grafana
+  namespace: apps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grafana
+  template:
+    metadata:
+      labels:
+        io.kompose.network/grid-default: "true"
+        app: grafana
+    spec:
+      containers:
+        - env:
+            - name: GF_INSTALL_PLUGINS
+              value: grafana-clock-panel,grafana-simple-json-datasource
+            - name: GF_SECURITY_ADMIN_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  key: GF_SECURITY_ADMIN_PASSWORD
+                  name: grafana-config-monitoring
+            - name: GF_USERS_ALLOW_SIGN_UP
+              valueFrom:
+                configMapKeyRef:
+                  key: GF_USERS_ALLOW_SIGN_UP
+                  name: grafana-config-monitoring
+          image: k8s101.azurecr.io/grid_grafana_demo:v1
+          name: grafana
+          ports:
+            - containerPort: 3000
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+
+          volumeMounts:
+            - mountPath: /var/lib/grafana
+              name: grafana-storage
+            - mountPath: /etc/grafana/provisioning/datasources
+              name: grafana-datasources
+              readOnly: false
+            - mountPath: /var/lib/grafana/dashboards
+              name: grafana-dashboard
+              readOnly: false
+            - mountPath: /etc/grafana/provisioning/dashboards
+              name: grafana-dashboard-definition
+
+      volumes:
+        - name: grafana-storage
+          emptyDir: {}
+        - name: grafana-datasources
+          configMap:
+              defaultMode: 420
+              name: grafana-datasources
+        - name: grafana-dashboard-definition
+          configMap:
+              defaultMode: 420
+              name: grafana-dashboard-definition        
+        - name: grafana-dashboard
+          configMap:
+              defaultMode: 420
+              name: grafana-dashboard
+      
+      restartPolicy: Always
+
+      securityContext:
+        fsGroup: 472
+        runAsUser: 472
+        supplementalGroups:
+          - 0
+
+status: {}

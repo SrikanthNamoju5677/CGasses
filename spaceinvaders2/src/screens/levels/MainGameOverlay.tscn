@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://dbjnx65wwt0p0"]
+
+[ext_resource type="Script" path="res://src/screens/levels/MainGameOverlay.cs" id="1"]
+[ext_resource type="PackedScene" uid="uid://fjswn5g0dmsy" path="res://src/messages/MessageWithTimer.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://bg5n1aox2vnaa" path="res://src/screens/pause/PauseScreen.tscn" id="3"]
+[ext_resource type="AudioStream" uid="uid://ddn0nk1oejh4q" path="res://src/sounds/warning.wav" id="5_0u46o"]
+[ext_resource type="AudioStream" uid="uid://k57h0qvjq25l" path="res://src/sounds/bgm.mp3" id="5_tfo2u"]
+
+[node name="MainGame" type="CanvasLayer"]
+process_mode = 1
+script = ExtResource("1")
+
+[node name="MessageWithTimer" parent="." instance=ExtResource("2")]
+
+[node name="PauseScreen" parent="." instance=ExtResource("3")]
+process_mode = 3
+layer = 2
+visible = false
+
+[node name="OverHeatedWarning" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_0u46o")
+
+[node name="bgm" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_tfo2u")
+
+[connection signal="MessageHidden" from="MessageWithTimer" to="." method="_on_message_with_timer_message_hidden"]

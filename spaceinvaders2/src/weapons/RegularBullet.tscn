@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://eo7ymhldsibb"]
+
+[ext_resource type="Texture2D" uid="uid://bggatyvdok2xu" path="res://Laser Sprites/19.png" id="1"]
+[ext_resource type="Script" path="res://src/weapons/RegularBullet.cs" id="2"]
+[ext_resource type="AudioStream" uid="uid://dkfif0jsr2t3q" path="res://src/sounds/primary_weapon.wav" id="3_mcxo2"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(162, 21.0006)
+
+[node name="RegularBullet" type="Sprite2D"]
+rotation = -1.5708
+texture = ExtResource("1")
+offset = Vector2(7, -50)
+script = ExtResource("2")
+
+[node name="RegularBulletArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RegularBulletArea2D"]
+position = Vector2(-1.99986, -50.5)
+shape = SubResource("1")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_mcxo2")

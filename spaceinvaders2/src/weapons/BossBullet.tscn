@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dmjnui6n3jwf0"]
+
+[ext_resource type="Texture2D" uid="uid://boyyk5tmus3gb" path="res://Laser Sprites/13.png" id="1"]
+[ext_resource type="Script" path="res://src/weapons/BossBullet.cs" id="2"]
+[ext_resource type="AudioStream" uid="uid://bn0r61oj3d8w5" path="res://src/sounds/bossLaser.wav" id="3_qewok"]
+
+[sub_resource type="CapsuleShape2D" id="1"]
+radius = 32.2916
+height = 75.0009
+
+[node name="BossBullet" type="Sprite2D" groups=["BossBullets"]]
+rotation = 1.5708
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1")
+script = ExtResource("2")
+
+[node name="BossBulletArea" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossBulletArea"]
+position = Vector2(-2.49998, -0.000163074)
+scale = Vector2(2.4, 0.399999)
+shape = SubResource("1")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_qewok")
+volume_db = -9.369

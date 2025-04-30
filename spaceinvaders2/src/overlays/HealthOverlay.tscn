@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/HP_Icon.png" type="Texture2D" id=1]
+[ext_resource path="res://assets/Armor_Icon.png" type="Texture2D" id=2]
+[ext_resource path="res://src/overlays/HealthOverlay.cs" type="Script" id=3]
+
+[node name="HealthOverlay" type="CanvasLayer"]
+script = ExtResource( 3 )
+
+[node name="ShieldIcon" type="Sprite2D" parent="."]
+position = Vector2( 110, 950 )
+scale = Vector2( 0.478262, 0.44432 )
+texture = ExtResource( 2 )
+
+[node name="ShieldBar" type="ProgressBar" parent="."]
+modulate = Color( 0, 0.5, 1, 1 )
+offset_left = 157.0
+offset_top = 939.0
+offset_right = 338.0
+offset_bottom = 959.0
+max_value = 1.0
+value = 1.0
+allow_greater = true
+
+[node name="ShieldNotifier" type="Label" parent="ShieldBar"]
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 44.0
+offset_bottom = 17.0
+align = 1
+valign = 1
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+modulate = Color( 0, 0.5, 1, 1 )
+offset_left = 159.0
+offset_top = 1005.0
+offset_right = 340.0
+offset_bottom = 1025.0
+max_value = 2.0
+
+[node name="HealthNotifier" type="Label" parent="HealthBar"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 44.0
+offset_bottom = 18.0
+align = 1
+valign = 1
+
+[node name="HealthIcon" type="Sprite2D" parent="."]
+position = Vector2( 109, 1015 )
+scale = Vector2( 0.478, 0.444 )
+texture = ExtResource( 1 )

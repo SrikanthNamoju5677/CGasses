@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dky004uttmejt"]
+
+[ext_resource type="Texture2D" uid="uid://c4bslgcholjhp" path="res://assets/powerups/alten_powerup.png" id="1_ym4wg"]
+[ext_resource type="Script" path="res://src/powerups/PowerupFire.cs" id="2"]
+[ext_resource type="AudioStream" uid="uid://b18kopoywixfx" path="res://src/sounds/powerupfly.wav" id="3_moy7t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ye00l"]
+size = Vector2(164, 169)
+
+[node name="PowerupFire" type="Sprite2D" groups=["PowerUps"]]
+z_index = 1
+position = Vector2(407.5, 416.5)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_ym4wg")
+script = ExtResource("2")
+
+[node name="PowerupFire" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PowerupFire"]
+position = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_ye00l")
+
+[node name="PowerUpFly" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_moy7t")
+volume_db = 15.0

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment  # Or ReplicaSet, same syntax!
+metadata:
+  name: my-selector
+  labels:
+    app: my-selector
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-selector
+  template:
+    metadata:
+      labels:
+        app: my-selector
+    spec:
+      containers:
+      - name: my-container
+        image: ubuntu:20.04
+        command: ["/bin/bash"]
+        args: ["-c","echo hi;sleep 6000;echo bye!"]
+

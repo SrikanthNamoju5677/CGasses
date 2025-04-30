@@ -1,0 +1,11 @@
+FROM node:12-alpine
+WORKDIR /app
+COPY app/package.json ./
+COPY app/yarn.lock ./
+COPY app/spec ./spec
+COPY app/src ./src
+
+CMD ["node", "src/index.js"]
+
+EXPOSE 4000
+EXPOSE 8080

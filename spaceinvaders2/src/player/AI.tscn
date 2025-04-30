@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7jlldut1tarn"]
+
+[ext_resource type="Texture2D" uid="uid://bndhdidtqvfid" path="res://assets/Players/terminal_2_pink.png" id="1_gds6g"]
+[ext_resource type="Script" path="res://src/player/AI.cs" id="2_gxt7t"]
+[ext_resource type="AudioStream" uid="uid://cy1p73wk7h633" path="res://src/sounds/firepowerupsound.wav" id="3_m1vb5"]
+
+[node name="Player" type="Sprite2D"]
+scale = Vector2(1, 1.01786)
+texture = ExtResource("1_gds6g")
+script = ExtResource("2_gxt7t")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Area2D"]
+scale = Vector2(1, 1.01731)
+polygon = PackedVector2Array(25, -19, 25, 19, -25, 19, -25, -19)
+
+[node name="GunPosition" type="Node2D" parent="."]
+position = Vector2(0, 0.491226)
+
+[node name="PowerUpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_m1vb5")

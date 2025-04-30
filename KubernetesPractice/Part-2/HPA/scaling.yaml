@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scale-demo
+  labels:
+    app: scale-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: scale-demo
+  template:
+    metadata:
+      labels:
+        app: scale-demo
+    spec:
+      containers:
+      - name: stressgen
+        image: progrium/stress
+        imagePullPolicy: Always
+        args: ["--cpu", "1","--timeout","3600"]
+        resources:
+          requests:
+            memory: "100Mi" 
+            cpu: "0.1"
+          limits:
+            memory: "100Mi"
+            cpu: "0.1"
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+ name: hpa-demo-deployment
+spec:
+ scaleTargetRef:
+   apiVersion: apps/v1
+   kind: Deployment
+   name: scale-demo  # Deployment name
+ minReplicas: 1
+ maxReplicas: 3
+ targetCPUUtilizationPercentage: 50

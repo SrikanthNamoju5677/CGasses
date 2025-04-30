@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://kuoftcrqki7s"]
+
+[ext_resource type="Texture2D" uid="uid://40yjfw4nahi8" path="res://src/boss/boss_invader.png" id="1_bckgx"]
+[ext_resource type="Script" path="res://src/boss/BossSprite.cs" id="2"]
+[ext_resource type="AudioStream" uid="uid://c6tx0h8f07jeh" path="res://src/sounds/laugh.wav" id="3_b6h22"]
+
+[sub_resource type="CapsuleShape2D" id="1"]
+radius = 90.7614
+height = 301.007
+
+[node name="BossSprite" type="Sprite2D" groups=["Boss"]]
+position = Vector2(-9.53674e-07, 1)
+scale = Vector2(0.79625, 0.727604)
+texture = ExtResource("1_bckgx")
+script = ExtResource("2")
+
+[node name="BossArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossArea2D"]
+position = Vector2(-2.51177, 4.12312)
+scale = Vector2(1.24535, 1.08669)
+shape = SubResource("1")
+
+[node name="TriggerBossTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+modulate = Color(1, 0, 0, 1)
+self_modulate = Color(1, 0, 0, 1)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -239.756
+offset_top = -233.098
+offset_right = -12.7559
+offset_bottom = -172.098
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_b6h22")
+volume_db = 9.369
+
+[connection signal="timeout" from="TriggerBossTimer" to="." method="OnTriggerBossTimerTimeout"]

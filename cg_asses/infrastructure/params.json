@@ -1,0 +1,25 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "acrName": {
+        "value": "CG5677acr"
+      },
+      "aksName": {
+        "value": "CG5677akscluster"
+      },
+      "dnsPrefix": {
+        "value": "CG5677aksdns"
+      },
+      "location": {
+        "value": "West US"
+      },
+      "clientId": {
+        "value": "ab450425-173c-492e-bd9e-dc83d01e55fa"
+      },
+      "clientSecret": {
+        "value": "E3y8Q~sr7ue4BANedi3mq6pZWBPqNmDZeFSwkb00"
+      }
+    }
+  }
+  

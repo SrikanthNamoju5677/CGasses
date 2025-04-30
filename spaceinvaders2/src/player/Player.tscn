@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://x5ia2b244klm"]
+
+[ext_resource type="Texture2D" uid="uid://bn3ot45ah3ygf" path="res://assets/Players/terminal_1_pink.png" id="1"]
+[ext_resource type="Script" path="res://src/player/Player.cs" id="2"]
+[ext_resource type="AudioStream" uid="uid://4c8nijdlj6y1" path="res://src/sounds/altenpower.wav" id="3_nt8hs"]
+[ext_resource type="AudioStream" uid="uid://3favsjuqvne1" path="res://src/sounds/playerhit.wav" id="4_j0tp1"]
+
+[node name="Player" type="Sprite2D"]
+texture = ExtResource("1")
+script = ExtResource("2")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Area2D"]
+scale = Vector2(1, 1.01731)
+polygon = PackedVector2Array(25, 21.6257, -25, 21.6257, -25, -20.6427, 25, -20.6427)
+
+[node name="PowerUpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_nt8hs")
+volume_db = 15.0
+
+[node name="PlayerHit" type="AudioStreamPlayer2D" parent="PowerUpSound"]
+stream = ExtResource("4_j0tp1")
+
+[node name="GunPosition" type="Node2D" parent="."]
+position = Vector2(0, 7)

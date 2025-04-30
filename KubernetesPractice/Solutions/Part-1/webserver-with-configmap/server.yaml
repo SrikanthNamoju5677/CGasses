@@ -1,0 +1,35 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: webserver-decode-secret
+type: Opaque
+data:
+  # Must be base64 encoded
+  FERNET_KEY: cG9uOGpLMTdPVUZNRUpJaGFLX0RNekxRRHdDNmFMa2ZXQVN3ZkJwVWJwST0=
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: webserver-pod
+spec:
+  containers:
+  - name: mycontainer
+    image: python:3-buster
+    command: ["/bin/bash"]
+    args: ["-c","pip install -r /webserver/requirements.txt; python /webserver/server.py"]
+    volumeMounts:
+      - name: config-volume
+        mountPath: /webserver
+    env:   
+      - name: SECRET_KEY
+        valueFrom:
+          secretKeyRef:
+            name: webserver-decode-secret
+            key: FERNET_KEY
+    ports:
+      - containerPort: 6677
+  volumes:
+    - name: config-volume
+      configMap:
+        name: simple-webserver

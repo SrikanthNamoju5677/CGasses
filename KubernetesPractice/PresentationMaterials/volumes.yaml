@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: my-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  # storageClassName can be used to select provider
+  resources:
+    requests:
+      storage: 3Gi
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: volumes-demo
+spec:
+  containers:
+  - name: mycontainer
+    image: ubuntu:20.04
+    command: ["/bin/bash"]
+    args: ["-c","ls /Ext;ls /data; ls /persistent;sleep 6000;echo bye!"]
+    volumeMounts:
+    - mountPath: /Ext
+      name: host-mount
+    - mountPath: /data
+      name: ephemeral
+    - mountPath: /persistent
+      name: my-pvc-storage
+  volumes:
+  - name: host-mount
+    hostPath:  # minikube: minikube mount <source directory>:<target directory>
+      path: /mnt/Ext  # minikube.exe mount C://Ext:/mnt/Ext
+      type: Directory
+  - name: ephemeral
+    emptyDir: {}
+  - name: my-pvc-storage
+    persistentVolumeClaim:
+      claimName: my-pvc

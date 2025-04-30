@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxjourk328f38"]
+
+[ext_resource type="Script" path="res://src/overlays/BonusScoreOverlay.cs" id="2"]
+[ext_resource type="Theme" uid="uid://b6eoudtut6184" path="res://assets/FontTheme.tres" id="2_tr6ow"]
+
+[node name="BonusScore" type="CanvasLayer"]
+script = ExtResource("2")
+
+[node name="BonesScoreText" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -99.0
+offset_top = 61.0
+offset_right = 152.0
+offset_bottom = 94.0
+scale = Vector2(0.8, 1)
+theme = ExtResource("2_tr6ow")
+text = "Time left for bonus:"
+
+[node name="BonusScoreTimeLeft" type="Label" parent="."]
+offset_left = 1071.0
+offset_top = 63.0
+offset_right = 1103.0
+offset_bottom = 96.0
+theme = ExtResource("2_tr6ow")
+text = "0
+"
+
+[node name="BonusScoreTimer" type="Timer" parent="."]
+wait_time = 55.0
+one_shot = true

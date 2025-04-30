@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: minimal-pod
+spec:
+  containers:
+  - name: mycontainer
+    image: python:3-alpine
